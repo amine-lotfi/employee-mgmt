@@ -1,0 +1,35 @@
+/* Google fonts: Poppins */
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap");
+
+:root {
+    --bg-color: ;
+    --text-color: ;
+    --main-color: ;
+}
+
+* {
+    font-family: Poppins, Arial;
+    font-weight: 500;
+}
+
+.wrapper {
+    background-color: rgb(49, 49, 49);
+    height: 100vh;
+}
+
+.username-list {
+    color: white !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+}
+
+.menu-list {
+    color: white !important;
+    font-size: 1.4rem !important;
+    font-weight: 600 !important;
+    transition: all 0.5s ease-in-out !important;
+}
+
+.menu-list:hover {
+    color: #007f96 !important;
+}
