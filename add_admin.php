@@ -1,4 +1,4 @@
-<?php include 'templates/sidemenu.php'; ?>
+<?php include 'templates/header.php'; ?>
 
 <?php
 // checking if form is submitted

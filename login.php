@@ -1,6 +1,9 @@
-<?php include 'templates/sidemenu.php'; ?>
+<?php include 'templates/header.php'; ?>
 
 <?php
+$alertMessage = isset($_SESSION['alertMessage']) ? $_SESSION['alertMessage'] : '';
+// clear the message after displaying it
+unset($_SESSION['alertMessage']);
 
 if (isset($_POST['connect-btn'])) {
     // getting the data
@@ -23,7 +26,7 @@ if (isset($_POST['connect-btn'])) {
             // password is correct, set session
             session_start();
             $_SESSION['username'] = $inputUsername;
-            header("Location: homepage.php");
+            header("Location: dashboard.php");
             exit();
         } else {
             echo '<script>alert("Invalid password.")</script>';
@@ -40,6 +43,17 @@ if (isset($_POST['connect-btn'])) {
 
 <div class="col-md-10">
     <div class="container flex-column d-flex justify-content-center align-items-center vh-100">
+
+        <!-- bootsrap alert -->
+        <div class="container mt-5 w-50">
+            <?php if (!empty($alertMessage)): ?>
+                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <?php echo $alertMessage; ?>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                </div>
+            <?php endif; ?>
+        </div>
+
         <h2>Login</h2>
         <form action="" method="POST" class="form-control w-50 p-2">
 
@@ -56,6 +70,5 @@ if (isset($_POST['connect-btn'])) {
             </div>
         </form>
     </div>
-</div>
 
-<?php include 'templates/footer.php'; ?>
+    <?php include 'templates/footer.php'; ?>

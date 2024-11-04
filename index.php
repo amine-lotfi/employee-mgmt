@@ -1,4 +1,4 @@
-<?php include 'templates/sidemenu.php'; ?>
+<?php include 'templates/header.php'; ?>
 
 <div class="col-md-10">
     <div class="container flex-column d-flex justify-content-center align-items-center vh-100">

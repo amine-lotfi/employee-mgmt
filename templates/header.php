@@ -18,8 +18,6 @@ if (isset($_POST['logout-btn'])) {
     header("Location: index.php");
     exit();
 }
-
-
 ?>
 
 <!DOCTYPE html>
@@ -49,9 +47,11 @@ if (isset($_POST['logout-btn'])) {
                     <h5 class="username-list mt-2">Welcome, <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest'; ?></h5>
                 </div>
                 <div class="container d-flex flex-column align-items-center">
-                    <a href="#" class="menu-list btn">Dashboard</a>
-                    <a href="#" class="menu-list btn">Employees</a>
-                    <a href="#" class="menu-list btn">Departments</a>
+                    <a href="dashboard.php" class="menu-list btn"><i class="bi bi-speedometer2"></i> Dashboard</a>
+                    <a href="employees.php" class="menu-list btn"><i class="bi bi-file-earmark-person"></i> Employees</a>
+                    <a href="#" class="menu-list btn"><i class="bi bi-building"></i> Departments</a>
+                    <a href="#" class="menu-list btn"><i class="bi bi-calendar-check"></i> Absences</a>
+                    <a href="#" class="menu-list btn"><i class="bi bi-exclamation-circle"></i> Warnings</a>
                 </div>
                 <div class="container text-center">
                     <form action="" method="POST">

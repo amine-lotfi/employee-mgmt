@@ -2,9 +2,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap");
 
 :root {
-    --bg-color: ;
-    --text-color: ;
-    --main-color: ;
+    --sidemenu-bg-color: #313131;
+    --text-color: #ffffff;
+    --main-color: #007f96;
+    --second-color: #007f9656;
 }
 
 * {
@@ -13,23 +14,34 @@
 }
 
 .wrapper {
-    background-color: rgb(49, 49, 49);
+    background-color: var(--sidemenu-bg-color);
     height: 100vh;
 }
 
 .username-list {
-    color: white !important;
+    color: var(--text-color) !important;
     font-size: 1.4rem !important;
     font-weight: 600 !important;
 }
 
 .menu-list {
-    color: white !important;
+    color: var(--text-color) !important;
     font-size: 1.4rem !important;
     font-weight: 600 !important;
     transition: all 0.5s ease-in-out !important;
 }
 
 .menu-list:hover {
-    color: #007f96 !important;
+    color: var(--main-color) !important;
+}
+
+.card-dashboard .menu-list {
+    color: var(--main-color) !important;
+    font-size: 1.2rem !important;
+    font-weight: 600 !important;
+    transition: all 0.5s ease-in-out !important;
+}
+
+.card-dashboard .menu-list:hover {
+    color: var(--second-color) !important;
 }
