@@ -1,12 +1,7 @@
-<?php include 'templates/header.php'; ?>
+<?php require './includes/header.php'; ?>
+<?php require './includes/functions.php'; ?>
 
 <?php
-// this will redirect to login page if not logged in
-if (empty($_SESSION['username'])) {
-    $_SESSION['alertMessage'] = "You need to log in to have access.";
-    header("Location: login.php");
-    exit();
-}
 // check for delete request first
 if (isset($_POST['delete']) && !empty($_POST['item-id'])) {
     $delete_stmt = $conn->prepare("DELETE FROM employees WHERE id = ?");
@@ -46,8 +41,8 @@ $stmt->bind_result($id, $name, $SSN, $birthdate, $email, $phone, $department_id,
 ?>
 
 <div class="col-md-10">
-    <div class="container-fluid flex-column d-flex justify-content-center align-items-center vh-100">
-        <h2 class="mb-5">Our employees:</h2>
+    <div class="container-fluid flex-column d-flex align-items-center">
+        <h2 class="my-5">Our employees:</h2>
         <table class="table">
             <thead>
                 <tr>
@@ -83,11 +78,11 @@ $stmt->bind_result($id, $name, $SSN, $birthdate, $email, $phone, $department_id,
                             <form action="" method="POST">
                                 <input type="hidden" name="item-id" value="<?php echo $id; ?>">
                                 <button type="submit" name="delete" class="btn btn-danger btn-sm">
-                                    <i class="bi bi-trash"></i>
+                                    <i class="fa-solid fa-trash-can"></i>
                                 </button>
 
                                 <button type="submit" name="update" class="btn btn-success btn-sm">
-                                    <i class="bi bi-pencil"></i>
+                                    <i class="fa-solid fa-pencil"></i>
                                 </button>
                             </form>
                         </td>
@@ -106,4 +101,4 @@ $stmt->close();
 $conn->close();
 ?>
 
-<?php include 'templates/footer.php'; ?>
+<?php include './includes/footer.php'; ?>

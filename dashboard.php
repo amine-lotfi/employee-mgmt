@@ -1,35 +1,29 @@
-<?php include 'templates/header.php'; ?>
+<?php require './includes/header.php'; ?>
+<?php require './includes/functions.php'; ?>
 
 <?php
-// this will redirect to login page if not logged in
-if (empty($_SESSION['username'])) {
-    $_SESSION['alertMessage'] = "You need to log in to have access.";
-    header("Location: login.php");
-    exit();
-} else {
-    $employees_count = 0;
-    $departments_count = 0;
-    $absences_count = 0;
-    $warnings_count = 0;
+$employees_count = 0;
+$departments_count = 0;
+$absences_count = 0;
+$warnings_count = 0;
 
-    // get the count of rows in a table
-    function getCount($conn, $table)
-    {
-        $count = 0;
-        $stmt = $conn->prepare("SELECT COUNT(*) FROM $table");
-        $stmt->execute();
-        $stmt->bind_result($count);
-        $stmt->fetch();
-        $stmt->close();
-        return $count;
-    }
-
-    // counts for each table
-    $employees_count = getCount($conn, 'employees');
-    $departments_count = getCount($conn, 'departments');
-    $absences_count = getCount($conn, 'absences');
-    $warnings_count = getCount($conn, 'warnings');
+// get the count of rows in a table
+function getCount($conn, $table)
+{
+    $count = 0;
+    $stmt = $conn->prepare("SELECT COUNT(*) FROM $table");
+    $stmt->execute();
+    $stmt->bind_result($count);
+    $stmt->fetch();
+    $stmt->close();
+    return $count;
 }
+
+// counts for each table
+$employees_count = getCount($conn, 'employees');
+$departments_count = getCount($conn, 'departments');
+$absences_count = getCount($conn, 'absences');
+$warnings_count = getCount($conn, 'warnings');
 ?>
 
 <div class="col-md-10">
@@ -43,7 +37,7 @@ if (empty($_SESSION['username'])) {
                 <div class="col-md-3">
                     <div class="card card-dashboard text-center mb-3">
                         <div class="card-body">
-                            <img src="res/employees.png" alt="" class="w-50">
+                            <i class="fa-solid fa-users"></i>
                             <h5>Employees</h5>
                             <h3><?php echo htmlspecialchars("{$employees_count}") ?></h3>
                             <a href="employees.php" class="menu-list btn">More</a>
@@ -55,7 +49,7 @@ if (empty($_SESSION['username'])) {
                 <div class="col-md-3">
                     <div class="card card-dashboard text-center mb-3">
                         <div class="card-body">
-                            <img src="res/departments.png" alt="" class="w-50">
+                            <i class="fa-solid fa-building"></i>
                             <h5>Departments</h5>
                             <h3><?php echo htmlspecialchars("{$departments_count}") ?></h3>
                             <a href="#" class="menu-list btn">More</a>
@@ -67,7 +61,7 @@ if (empty($_SESSION['username'])) {
                 <div class="col-md-3">
                     <div class="card card-dashboard text-center mb-3">
                         <div class="card-body">
-                            <img src="res/absences.png" alt="" class="w-50">
+                            <i class="fa-regular fa-calendar-check"></i>
                             <h5>Absences</h5>
                             <h3><?php echo htmlspecialchars("{$absences_count}") ?></h3>
                             <a href="#" class="menu-list btn">More</a>
@@ -79,7 +73,7 @@ if (empty($_SESSION['username'])) {
                 <div class="col-md-3">
                     <div class="card card-dashboard text-center mb-3">
                         <div class="card-body">
-                            <img src="res/warnings.png" alt="" class="w-50">
+                            <i class="fa-solid fa-triangle-exclamation"></i>
                             <h5>Warnings</h5>
                             <h3><?php echo htmlspecialchars("{$warnings_count}") ?></h3>
                             <a href="#" class="menu-list btn">More</a>
@@ -93,4 +87,4 @@ if (empty($_SESSION['username'])) {
     </div>
 </div>
 
-<?php include 'templates/footer.php'; ?>
+<?php include './includes/footer.php'; ?>

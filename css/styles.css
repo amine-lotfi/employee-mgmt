@@ -35,6 +35,15 @@
     color: var(--main-color) !important;
 }
 
+.logo-icon {
+    color: var(--main-color);
+    font-size: 8rem;
+}
+
+.card-dashboard {
+    border-bottom: 5px solid var(--main-color) !important;
+}
+
 .card-dashboard .menu-list {
     color: var(--main-color) !important;
     font-size: 1.2rem !important;
@@ -44,4 +53,9 @@
 
 .card-dashboard .menu-list:hover {
     color: var(--second-color) !important;
+}
+
+.card-dashboard i {
+    color: var(--main-color);
+    font-size: 2rem;
 }
