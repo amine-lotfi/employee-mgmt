@@ -1,9 +1,9 @@
 <?php require __DIR__ . '/../includes/header.php'; ?>
-<?php require __DIR__ . '/../includes/funcs.php'; ?>
+<?php require_once __DIR__ . '/../includes/funcs.php'; ?>
 
 <?php
 // call the function to check if the user is logged in
-checkIfLoggedIn();
+check_if_logged_in();
 
 $employees_count = 0;
 $departments_count = 0;
@@ -38,7 +38,7 @@ $warnings_count = getCount($conn, 'warnings');
 
                 <!-- Card 1 -->
                 <div class="col-md-3">
-                    <div class="card card-dashboard text-center mb-3">
+                    <div class="card card-dashboard shadow-lg bg-dark text-light text-center mb-3">
                         <div class="card-body">
                             <i class="fa-solid fa-users"></i>
                             <h5>Employees</h5>
@@ -50,8 +50,8 @@ $warnings_count = getCount($conn, 'warnings');
 
                 <!-- Card 2 -->
                 <div class="col-md-3">
-                    <div class="card card-dashboard text-center mb-3">
-                        <div class="card-body">
+                    <div class="card card-dashboard shadow-lg bg-dark text-light text-center mb-3">
+                        <div class="card-body ">
                             <i class="fa-solid fa-building"></i>
                             <h5>Departments</h5>
                             <h3><?php echo htmlspecialchars("{$departments_count}") ?></h3>
@@ -62,7 +62,7 @@ $warnings_count = getCount($conn, 'warnings');
 
                 <!-- Card 3 -->
                 <div class="col-md-3">
-                    <div class="card card-dashboard text-center mb-3">
+                    <div class="card card-dashboard shadow-lg bg-dark text-light text-center mb-3">
                         <div class="card-body">
                             <i class="fa-regular fa-calendar-check"></i>
                             <h5>Absences</h5>
@@ -74,7 +74,7 @@ $warnings_count = getCount($conn, 'warnings');
 
                 <!-- Card 4 -->
                 <div class="col-md-3">
-                    <div class="card card-dashboard text-center mb-3">
+                    <div class="card card-dashboard shadow-lg bg-dark text-light text-center mb-3">
                         <div class="card-body">
                             <i class="fa-solid fa-triangle-exclamation"></i>
                             <h5>Warnings</h5>

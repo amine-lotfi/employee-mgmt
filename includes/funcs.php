@@ -1,4 +1,4 @@
-<?php require __DIR__ . '/../config/paths.php'; ?>
+<?php require_once __DIR__ . '/../config/paths.php'; ?>
 
 <?php
 /*
@@ -7,8 +7,8 @@ to avoid code repetition
 */
 
 
-// to check if the user is not logged in and redirect to the login page
-function checkIfLoggedIn()
+// check if the user is not logged in and redirect to the login page
+function check_if_logged_in()
 {
     if (empty($_SESSION['username'])) {
         $_SESSION['alertMessage'] = "You need to log in to have access.";
@@ -17,11 +17,10 @@ function checkIfLoggedIn()
     }
 }
 
-// to get the client IP address
+// get the client IP address
 function get_ip()
 {
     $ip = '';
-
     if (isset($_SERVER['HTTP_CLIENT_IP'])) {
         $ip = $_SERVER['HTTP_CLIENT_IP'];
     } elseif (isset($_SERVER['HTTP_X_FORWARDED_FOR'])) {

@@ -1,9 +1,10 @@
 <?php require __DIR__ . '/../includes/header.php'; ?>
-<?php require __DIR__ . '/../includes/funcs.php'; ?>
+<?php require_once __DIR__ . '/../includes/funcs.php'; ?>
 
 <?php
 
 $alertMessage = isset($_SESSION['alertMessage']) ? $_SESSION['alertMessage'] : '';
+
 // clear the message after displaying it
 unset($_SESSION['alertMessage']);
 
@@ -27,22 +28,24 @@ try {
             // verifying the password
             if (password_verify($inputPassword, $hashedPassword)) {
                 // password is correct, insert the log and set session
-                $log = $inputUsername . ' has successfully logged in.';
-                $insertStmt = $conn->prepare("INSERT INTO `logs` (`string`) VALUES (?)");
-                $insertStmt->bind_param('s', $log);
-                if ($insertStmt->execute()) {
-                    error_log('Inserted!');
+                !empty(get_ip()) ? $ip = get_ip() : 'IP_ERROR';
+                $operation = 'login';
+                $log = $inputUsername . ' has successfully logged in';
+
+                $log_stmt = $conn->prepare("INSERT INTO `logs` (`ip`, `operation`, `log`) VALUES (?, ?, ?)");
+                $log_stmt->bind_param('sss', $ip, $operation, $log);
+                if ($log_stmt->execute()) {
+                    error_log('Log inserted!');
+
+                    // store the username
+                    $_SESSION['username'] = $inputUsername;
+                    header('Location: ' . REDIRECT_URL . 'dashboard.php');
+                    exit();
                 } else {
-                    error_log('Error: ' . $insertStmt->error);
+                    error_log('Error in ' . $_SERVER['PHP_SELF'] . ' - ' . $log_stmt->error);
                 }
-
                 // closing the second statement
-                $insertStmt->close();
-
-                session_start();
-                $_SESSION['username'] = $inputUsername;
-                header('Location: ' . REDIRECT_URL . 'dashboard.php');
-                exit();
+                $log_stmt->close();
             } else {
                 echo '<script>alert("Invalid password.")</script>';
             }
@@ -51,7 +54,7 @@ try {
         }
     }
 } catch (Exception $e) {
-    error_log('Error: ' . $e->getMessage());
+    error_log('Error in ' . $_SERVER['PHP_SELF'] . ' - ' . $e->getMessage());
 } finally {
     if (isset($stmt) && isset($conn)) {
         $stmt->close();
@@ -61,7 +64,7 @@ try {
 ?>
 
 <div class="col-md-10">
-    <div class="container flex-column d-flex justify-content-center align-items-center vh-100">
+    <div class="container-fluid flex-column d-flex justify-content-center align-items-center vh-100">
 
         <!-- bootsrap alert -->
         <div class="col-md-7 mt-5">

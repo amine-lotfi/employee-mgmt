@@ -2,7 +2,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700;800;900&display=swap");
 
 :root {
-    --sidemenu-bg-color: #313131;
     --text-color: #ffffff;
     --main-color: #007f96;
     --second-color: #007f9656;
@@ -11,6 +10,7 @@
 * {
     font-family: Poppins, Arial;
     font-weight: 500;
+    box-sizing: none;
 }
 
 .side-menu-wrapper {
@@ -30,16 +30,12 @@
     border-right: 8px solid var(--main-color);
 }
 
-.username-list {
-    color: var(--text-color) !important;
-    font-size: 1.4rem !important;
-    font-weight: 600 !important;
-}
-
 .menu-list {
+    margin-bottom: 10%;
     color: var(--text-color) !important;
-    font-size: 1.4rem !important;
+    font-size: 1.1rem !important;
     font-weight: 600 !important;
+    border-bottom: 5px solid var(--main-color) !important;
     transition: all 0.5s ease-in-out !important;
 }
 
@@ -49,11 +45,17 @@
 
 .logo-icon {
     color: var(--main-color);
-    font-size: 8rem;
+    font-size: 4rem;
 }
 
 .card-dashboard {
     border-bottom: 5px solid var(--main-color) !important;
+    transition: all 0.5s ease-in-out !important;
+
+}
+
+.card-dashboard:hover {
+    transform: translateY(-5rem)
 }
 
 .card-dashboard .menu-list {
@@ -70,4 +72,8 @@
 .card-dashboard i {
     color: var(--main-color);
     font-size: 2rem;
+}
+
+thead {
+    border-bottom: 4px solid var(--main-color) !important;
 }
