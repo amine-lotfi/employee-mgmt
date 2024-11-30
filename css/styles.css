@@ -13,9 +13,21 @@
     font-weight: 500;
 }
 
-.wrapper {
-    background-color: var(--sidemenu-bg-color);
+.side-menu-wrapper {
     height: 100vh;
+}
+
+.card {
+    border-bottom: 14px solid var(--main-color);
+}
+
+.card-header {
+    border-bottom: 2px solid var(--main-color);
+}
+
+.card-body input {
+    border-radius: 0;
+    border-right: 8px solid var(--main-color);
 }
 
 .username-list {

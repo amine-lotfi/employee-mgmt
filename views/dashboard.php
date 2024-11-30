@@ -1,7 +1,10 @@
-<?php require './includes/header.php'; ?>
-<?php require './includes/functions.php'; ?>
+<?php require __DIR__ . '/../includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/funcs.php'; ?>
 
 <?php
+// call the function to check if the user is logged in
+checkIfLoggedIn();
+
 $employees_count = 0;
 $departments_count = 0;
 $absences_count = 0;
@@ -87,4 +90,4 @@ $warnings_count = getCount($conn, 'warnings');
     </div>
 </div>
 
-<?php include './includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>

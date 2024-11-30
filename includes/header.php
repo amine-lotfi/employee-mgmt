@@ -1,12 +1,13 @@
-<?php require './config/connect_db.php'; ?>
+<?php require __DIR__ . '/../config/connect_db.php'; ?>
+<?php require __DIR__ . '/../config/paths.php'; ?>
 
 <?php
 try {
     // start a session
     session_start();
     // to login
-    if (isset($_POST['login-btn'])) {
-        header('location: login.php');
+    if (isset($_POST['menu-login-btn'])) {
+        header('location: ./views/');
         exit();
     }
     // to log out
@@ -51,35 +52,35 @@ try {
     <!-- fontawesome -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" />
 
-    <link rel="stylesheet" href="./css/styles.css" />
+    <link rel="stylesheet" href="<?php echo BASE_URL; ?>/css/styles.css" />
 
-    <title>Employee Management</title>
+    <title>Employee Management System</title>
 </head>
 
 <body>
 
     <div class="container-fluid">
         <div class="row">
-            <div class="wrapper col-md-2 d-flex flex-column justify-content-between">
+            <div class="side-menu-wrapper col-md-2 d-flex flex-column justify-content-between bg-dark">
                 <div class="container text-center mt-3">
-                <i class="logo-icon fa-solid fa-user-large"></i>
+                    <i class="logo-icon fa-solid fa-user-large"></i>
 
-                    <h5 class="username-list mt-2">Welcome, <?php echo isset($_SESSION['username']) ? $_SESSION['username'] : 'Guest'; ?></h5>
+                    <h5 class="username-list mt-2"><?php echo isset($_SESSION['username']) ? 'Welcome back, ' . $_SESSION['username'] : 'Welcome back!'; ?></h5>
                 </div>
                 <div class="container d-flex flex-column align-items-center">
-                    <a href="dashboard.php" class="menu-list btn"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
-                    <a href="employees.php" class="menu-list btn"><i class="fa-solid fa-users"></i> Employees</a>
+                    <a href="<?php echo BASE_URL . '/views/dashboard.php'; ?>" class="menu-list btn"><i class="fa-solid fa-gauge-high"></i> Dashboard</a>
+                    <a href="<?php echo BASE_URL . '/views/employees.php'; ?>" class="menu-list btn"><i class="fa-solid fa-users"></i> Employees</a>
                     <a href="#" class="menu-list btn"><i class="fa-solid fa-building"></i> Departments</a>
                     <a href="#" class="menu-list btn"><i class="fa-regular fa-calendar-check"></i> Absences</a>
                     <a href="#" class="menu-list btn"><i class="fa-solid fa-triangle-exclamation"></i> Warnings</a>
-                    <a href="logs.php" class="menu-list btn"><i class="fa-solid fa-file-lines"></i> Logs</a>
+                    <a href="<?php echo BASE_URL . '/views/logs.php'; ?>" class="menu-list btn"><i class="fa-solid fa-file-lines"></i> Logs</a>
                 </div>
                 <div class="container text-center">
                     <form action="" method="POST">
                         <?php if (isset($_SESSION['username'])): ?>
                             <button type="submit" name="logout-btn" class="menu-list btn"><i class="fa-solid fa-right-from-bracket"></i> Logout</button>
                         <?php else: ?>
-                            <button type="submit" name="login-btn" class="menu-list btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
+                            <button type="submit" name="menu-login-btn" class="menu-list btn"><i class="fa-solid fa-right-to-bracket"></i> Login</button>
                         <?php endif; ?>
                     </form>
                 </div>

@@ -1,12 +1,12 @@
 <?php include 'templates/header.php'; ?>
 
 <?php
-// checking if form is submitted
+// check if form is submitted
 if (isset($_POST['add-admin'])) {
     $adminUsername = $_POST['username'];
     $adminPassword = $_POST['password'];
 
-    // checking if the username already exists
+    // check if the username already exists
     $checkStmt = $conn->prepare("SELECT COUNT(*) FROM admins WHERE username = ?");
     $checkStmt->bind_param("s", $adminUsername);
     $checkStmt->execute();
@@ -17,7 +17,7 @@ if (isset($_POST['add-admin'])) {
     if ($count > 0) {
         echo "<script>alert('Error: Admin with this username already exists!');</script>";
     } else {
-        // hashing the password
+        // hash the password
         $hashedPassword = password_hash($adminPassword, PASSWORD_DEFAULT);
 
         $stmt = $conn->prepare("INSERT INTO admins (username, password) VALUES (?, ?)");

@@ -1,12 +1,14 @@
-<?php include './includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/funcs.php'; ?>
 
 <?php
+
 $alertMessage = isset($_SESSION['alertMessage']) ? $_SESSION['alertMessage'] : '';
 // clear the message after displaying it
 unset($_SESSION['alertMessage']);
 
 try {
-    if (isset($_POST['connect-btn'])) {
+    if (isset($_POST['login-btn'])) {
         // getting the data
         $inputUsername = $_POST['username'];
         $inputPassword = $_POST['password'];
@@ -39,7 +41,7 @@ try {
 
                 session_start();
                 $_SESSION['username'] = $inputUsername;
-                header("Location: dashboard.php");
+                header('Location: ' . REDIRECT_URL . 'dashboard.php');
                 exit();
             } else {
                 echo '<script>alert("Invalid password.")</script>';
@@ -62,30 +64,38 @@ try {
     <div class="container flex-column d-flex justify-content-center align-items-center vh-100">
 
         <!-- bootsrap alert -->
-        <div class="container mt-5 w-50">
+        <div class="col-md-7 mt-5">
             <?php if (!empty($alertMessage)): ?>
-                <div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <div class="alert alert-danger alert-dismissible fade show" role="alert">
                     <?php echo $alertMessage; ?>
                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                 </div>
             <?php endif; ?>
         </div>
 
-        <h2>Login</h2>
-        <form action="" method="POST" class="form-control w-50 p-2">
+        <div class="card col-md-7 bg-dark text-light shadow-lg">
+            <div class="card-header text-center">
+                <h1 class="font-weight-bold">Login</h1>
+            </div>
+            <div class="card-body">
+                <form action="" method="POST" class="p-5">
 
-            <div class="mb-3">
-                <label for="username" class="form-label">Username</label>
-                <input type="text" name="username" id="username" class="form-control" placeholder="Enter your username" required>
+                    <div class="mb-3">
+                        <span class="text-danger fs-4">*</span><label for="username" class="form-label fs-5">Username</label>
+                        <input type="text" name="username" id="username" class="form-control p-3 fs-5" placeholder="Enter your username" required>
+                    </div>
+                    <div class="mb-3">
+                        <span class="text-danger fs-4">*</span><label for="password" class="form-label fs-5">Password</label>
+                        <input type="password" name="password" id="password" class="form-control p-3 fs-5" placeholder="Enter your password" required>
+                    </div>
+                    <span class="text-danger fs-4">*</span><span class="fs-6"> Required field.</span>
+
+                    <button type="submit" name="login-btn" class="btn btn-primary fs-4 mt-5 w-100">Login</button>
+
+                </form>
+
             </div>
-            <div class="mb-3">
-                <label for="password" class="form-label">Password</label>
-                <input type="password" name="password" id="password" class="form-control" placeholder="Enter your password" required>
-            </div>
-            <div class="text-center">
-                <button type="submit" name="connect-btn" class="btn btn-primary">Connect</button>
-            </div>
-        </form>
+        </div>
     </div>
 
-    <?php include './includes/footer.php'; ?>
+    <?php require __DIR__ . '/../includes/footer.php'; ?>

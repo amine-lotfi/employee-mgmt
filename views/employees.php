@@ -1,7 +1,9 @@
-<?php require './includes/header.php'; ?>
-<?php require './includes/functions.php'; ?>
+<?php require __DIR__ . '/../includes/header.php'; ?>
+<?php require __DIR__ . '/../includes/funcs.php'; ?>
 
 <?php
+// call the function to check if the user is logged in
+checkIfLoggedIn();
 // check for delete request first
 if (isset($_POST['delete']) && !empty($_POST['item-id'])) {
     $delete_stmt = $conn->prepare("DELETE FROM employees WHERE id = ?");
@@ -101,4 +103,4 @@ $stmt->close();
 $conn->close();
 ?>
 
-<?php include './includes/footer.php'; ?>
+<?php require __DIR__ . '/../includes/footer.php'; ?>
